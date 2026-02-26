@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Чому я тебе люблю 💗</title>
+
+  <style>
+    :root{
+      --pink-1:#fff0f7;
+      --pink-2:#ffe0ef;
+      --pink-3:#ffb6d5;
+      --pink-4:#ff5aa5;
+      --pink-5:#ff2e8a;
+      --text:#2b0f1e;
+      --shadow: 0 20px 60px rgba(255, 46, 138, .18);
+      --shadow2: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,90,165,.25), transparent 55%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,182,213,.35), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,46,138,.18), transparent 55%),
+        linear-gradient(135deg, var(--pink-1), var(--pink-2));
+      overflow-x:hidden;
+    }
+
+    /* subtle floating hearts */
+    .hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.18;
+      filter: blur(.2px);
+    }
+    .heart{
+      position:absolute;
+      animation: floatUp linear infinite;
+      font-size: 18px;
+    }
+    @keyframes floatUp{
+      from { transform: translateY(12vh) scale(.9); opacity: 0; }
+      15% { opacity: .9; }
+      to   { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+    }
+
+    .wrap{
+      width:min(860px, 92vw);
+      padding:24px;
+    }
+
+    .card{
+      position:relative;
+      border-radius: 26px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255, 90, 165, .18);
+      box-shadow: var(--shadow), var(--shadow2);
+      backdrop-filter: blur(10px);
+      padding: 26px;
+      overflow:hidden;
+    }
+
+    /* glossy highlight */
+    .card:before{
+      content:"";
+      position:absolute;
+      inset:-60px -80px auto auto;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%);
+      transform: rotate(18deg);
+      opacity:.55;
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(24px, 3.5vw, 34px);
+      letter-spacing: .2px;
+      line-height:1.1;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,90,165,.18), rgba(255,182,213,.22));
+      border: 1px solid rgba(255, 46, 138, .22);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .sub{
+      margin: 8px 0 18px;
+      opacity:.75;
+      font-size: 15px;
+      max-width: 64ch;
+    }
+
+    .reason{
+      position:relative;
+      border-radius: 18px;
+      padding: 18px 16px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255, 90, 165, .18);
+      min-height: 98px;
+      display:flex;
+      align-items:center;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.35;
+      box-shadow: 0 10px 24px rgba(255, 46, 138, .08);
+      transform: translateZ(0);
+    }
+
+    .reason.pop{
+      animation: pop .22s ease-out;
+    }
+    @keyframes pop{
+      from { transform: scale(.98); }
+      to   { transform: scale(1); }
+    }
+
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    button{
+      border:0;
+      cursor:pointer;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+      flex: 1;
+      min-width: 210px;
+    }
+    button:active{ transform: scale(.99); }
+
+    .btn-primary{
+      color:white;
+      background: linear-gradient(135deg, var(--pink-5), var(--pink-4));
+      box-shadow: 0 14px 32px rgba(255, 46, 138, .25);
+    }
+    .btn-primary:hover{ filter: brightness(1.03); }
+
+    .btn-ghost{
+      color: var(--text);
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(255, 46, 138, .22);
+      box-shadow: 0 12px 26px rgba(0,0,0,.06);
+    }
+
+    .meta{
+      margin-top: 14px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap: 10px;
+      font-size: 13px;
+      opacity:.75;
+    }
+
+    .tiny{
+      opacity:.7;
+      font-size: 12px;
+      margin-top: 10px;
+      text-align:center;
+    }
+
+    .footer-note{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 46, 138, .25);
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      font-size: 13px;
+      opacity:.78;
+    }
+    .sig{
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--pink-5), var(--pink-4));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div>
+          <h1>Чому я тебе люблю 💗</h1>
+          <div class="sub">
+            Натискай кнопку — і кожного разу буде нова причина.
+            Це маленький нескінченний подарунок від мене для тебе.
+          </div>
+        </div>
+
+        <div class="badge">
+          <span>Показано:</span>
+          <span id="count">0</span>
+          <span>✨</span>
+        </div>
+      </header>
+
+      <div class="reason" id="reason">Натисни “Ще одна причина” 🙂</div>
+
+      <div class="row">
+        <button class="btn-primary" id="next">Ще одна причина 💞</button>
+      </div>
+
+      <div class="footer-note">
+        <div>Повертаюсь до тебе знову і знову — і кожного разу це правильний вибір.</div>
+        <div class="sig">З любов’ю, твій Іван</div>
+      </div>
+
+      <div class="tiny">P.S. Ця сторінка працює навіть без інтернету.</div>
+    </div>
+  </div>
+
+  <script>
+    // --- Customize here ---
+    const reasons = [
+      "Бо поруч із тобою я відчуваю себе вдома.",
+      "Бо ти вмієш бути ніжною — і в той же час дуже сильною.",
+      "Бо ти робиш навіть буденні речі красивими.",
+      "Бо твій сміх — це моє улюблене ‘заспокійливе’.",
+      "Бо ти підтримуєш мене так, як мало хто вміє.",
+      "Бо ти маєш сміливість бути собою.",
+      "Бо ти надихаєш мене ставати кращим, але без тиску.",
+      "Бо ти така розумна, що іноді я ловлю себе на думці: ‘вау’.",
+      "Бо з тобою мені хочеться планувати майбутнє.",
+      "Бо ти вмієш і драйвувати, і бути дуже теплою одночасно.",
+      "Бо ти красива не тільки зовні — в тобі є світло.",
+      "Бо ти — моя улюблена людина."
+    ];
+
+    // Avoid repeats until all shown
+    let pool = [...reasons];
+    let shown = 0;
+
+    const reasonEl = document.getElementById("reason");
+    const countEl = document.getElementById("count");
+
+    function pickReason(){
+      if(pool.length === 0) pool = [...reasons];
+      const idx = Math.floor(Math.random() * pool.length);
+      return pool.splice(idx, 1)[0];
+    }
+
+    function showReason(text){
+      reasonEl.classList.remove("pop");
+      // force reflow to restart animation
+      void reasonEl.offsetWidth;
+      reasonEl.textContent = text;
+      reasonEl.classList.add("pop");
+    }
+
+    document.getElementById("next").addEventListener("click", () => {
+      const r = pickReason();
+      showReason(r);
+      shown += 1;
+      countEl.textContent = shown;
+    });
+
+    document.getElementById("copy").addEventListener("click", async () => {
+      const text = reasonEl.textContent;
+      try{
+        await navigator.clipboard.writeText(text);
+        const old = text;
+        showReason("Скопійовано ✅");
+        setTimeout(() => showReason(old), 900);
+      }catch{
+        alert("Не вдалось скопіювати. Можеш виділити текст вручну 🙂");
+      }
+    });
+
+    document.getElementById("share").addEventListener("click", async () => {
+      const text = reasonEl.textContent;
+      if(navigator.share){
+        try{
+          await navigator.share({ title: "Чому я тебе люблю 💗", text });
+        }catch{}
+      } else {
+        alert("На цьому пристрої немає Share. Натисни 'Скопіювати' і відправ у месенджер 🙂");
+      }
+    });
+
+    // Floating hearts background
+    const hearts = ["💗","💖","💞","💕","💘","🌸","✨"];
+    const heartsEl = document.getElementById("hearts");
+    const N = 22;
+    for(let i=0;i<N;i++){
+      const s = document.createElement("div");
+      s.className = "heart";
+      s.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+      s.style.left = Math.random()*100 + "vw";
+      s.style.top = (60 + Math.random()*60) + "vh";
+      s.style.animationDuration = (10 + Math.random()*16) + "s";
+      s.style.animationDelay = (-Math.random()*20) + "s";
+      s.style.fontSize = (14 + Math.random()*20) + "px";
+      heartsEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>
